@@ -1,8 +1,7 @@
 add_executable(tests
                 test.cpp)
                 
-target_link_libraries(tests 
-                    main_lib
+target_link_libraries(tests
                     GTest::gtest_main)
 
 include(GoogleTest)
