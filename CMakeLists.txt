@@ -16,8 +16,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(sdk)
 add_subdirectory(src)
-add_subdirectory(lib/restclient-cpp)
-
 
 include(FetchContent)
 
@@ -30,8 +28,12 @@ FetchContent_Declare(json
     GIT_REPOSITORY https://github.com/nlohmann/json
     GIT_TAG v3.11.3
 )
+FetchContent_Declare(restclient-cpp
+  GIT_REPOSITORY https://github.com/mrtazz/restclient-cpp.git
+  GIT_TAG 0.5.3
+)
 
-FetchContent_MakeAvailable(googletest json)
+FetchContent_MakeAvailable(googletest json restclient-cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
   restclient-cpp
@@ -44,4 +46,3 @@ add_compile_options(-Wall -Wextra -Werror -Wconversion -Wformat)
 # Testing
 enable_testing()
 add_subdirectory(tests)
-# target_include_directories(tests PUBLIC include)
